@@ -17,12 +17,11 @@ const styles = {
       height: 80,
       paddingTop: 35,
       position: 'relative',
-      backgroundColor: '#00ACC1',
+      backgroundColor: '#1565C0',
     },
     textStyle: {
         fontSize: 25,
         color: 'white',
-        fontFamily: 'Apple SD Gothic Neo'
     }
   };
 

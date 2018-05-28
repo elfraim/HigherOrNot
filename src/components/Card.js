@@ -4,41 +4,44 @@ import Button from './Button';
 
 
 class Card extends Component {
-    state = { cardNumbers: ['1', '2', '3', '4',
-                            '5', '6', '7', '8',
-                            '9', '10', 'J', 'Q',
-                            'K', 'A'],
-                        theCard: '5'
-                     };
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.cardNumbers < this.state.cardNumbers) {
-            return Alert.alert('Alert', 'test', { text: 'You lose' });
-        }
+    constructor(props) {
+        super(props);
+        this.state = {
+            cardNumbers: [1, 2, 3, 4,
+            5, 6, 7, 8,
+            9, 10, 11, 12,
+            13, 14],
+            theCard: 5,
+        };
+        this.cardChooser = this.cardChooser.bind(this);
     }
 
-    cardChooser = () => {
+    componentDidUpdate(prevProps, prevState) {
+    }
+    cardChooser() {
         const integer = this.state.cardNumbers.length - 1;
         const randNum = Math.floor(Math.random() * integer);
         const stateCard = this.state.cardNumbers[randNum];
-        if ( stateCard === 'K' || stateCard === 'Q') {
-            return 'King';
+        if (stateCard === 11) {
+            this.setState({ theCard: 'J' });
+        } else if (stateCard === 12) {
+            this.setState({ theCard: 'Q' });
+        } else if (stateCard === 13) {
+            this.setState({ theCard: 'K' });
+        } else if (stateCard === 14) {
+            this.setState({ theCard: 'A' });
         } else {
-            return this.state.cardNumbers[randNum];
+            this.setState({ theCard: stateCard });
         }
     }
-
-    checkHigher = () => {
-
-    }
-
     render() {
         const { numberCardStyle, textStyle } = styles;
 
         return (
             <View style={numberCardStyle}>
-                <Button onClick={() => this.cardChooser()}> Higher </Button>
-                <Text style={textStyle}>{this.cardChooser()}</Text>
-                <Button> Lower </Button>
+                <Button onPress={this.cardChooser}> Higher </Button>
+                <Text style={textStyle}>{this.state.theCard}</Text>
+                <Button onPress={this.cardChooser}> Lower </Button>
             </View>
         );
     }
@@ -47,12 +50,13 @@ class Card extends Component {
 const styles = {
     numberCardStyle: {
         height: '91%',
-        backgroundColor: 'red',
+        backgroundColor: '#03A9F4',
         justifyContent: 'center',
         alignItems: 'center'
     },
     textStyle: {
-        fontSize: 100
+        fontSize: 100,
+        color: '#37474F'
     }
 }
 
