@@ -19,19 +19,18 @@ class Card extends Component {
         this.LowerCardChooser = this.LowerCardChooser.bind(this);
     }
 
-
-
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.cardInteger < this.state.cardInteger && this.state.higherOrLower === true) {
+        if (prevState.cardInteger > this.state.cardInteger && this.state.higherOrLower === true) {
             this.loser();
-        } else if (prevState.cardInteger > this.state.cardInteger && this.state.higherOrLower === false) {
+        } else if (prevState.cardInteger < this.state.cardInteger && this.state.higherOrLower === false) {
             this.loser();
         }
+        console.log(this.state);
     }
 
     loser() {
         this.setState({
-            theCard: 'LOSE!'
+            theCard: `${this.state.theCard} LOSE!`
         });
     }
 
@@ -65,10 +64,10 @@ class Card extends Component {
              });
         } else {
             this.setState({
-                theCard: stateCard
+                theCard: stateCard,
+                cardInteger: stateCard
              });
         }
-        console.log(this.state);
     }
 
     LowerCardChooser() {
@@ -100,10 +99,10 @@ class Card extends Component {
              });
         } else {
             this.setState({
-                theCard: stateCard
+                theCard: stateCard,
+                cardInteger: stateCard
              });
         }
-        console.log(this.state);
     }
 
 
