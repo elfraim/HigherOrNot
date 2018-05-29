@@ -14,7 +14,7 @@ const HigherButton = (props) => {
 const styles = {
     buttonStyle: {
         width: '100%',
-        height: '40%',
+        height: '43%',
         backgroundColor: '#2196F3',
         alignItems: 'center',
         justifyContent: 'center',
